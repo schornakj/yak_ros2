@@ -66,7 +66,7 @@ install(TARGETS ${PROJECT_NAME}_node
 install(DIRECTORY launch demo
         DESTINATION share/${PROJECT_NAME})
 
-if(DEFINED BUILD_DEMO)
+if(BUILD_TESTING OR DEFINED BUILD_DEMO)
     find_package(gl_depth_sim REQUIRED)
     find_package(image_transport REQUIRED)
     add_executable(${PROJECT_NAME}_image_simulator
@@ -89,4 +89,11 @@ if(DEFINED BUILD_DEMO)
       )
     install(TARGETS ${PROJECT_NAME}_image_simulator
             RUNTIME DESTINATION lib/${PROJECT_NAME})
+endif()
+
+if(BUILD_TESTING)
+  find_package(launch_testing_ament_cmake REQUIRED)
+  add_launch_test(test/launch_testing/mutable_transform_publisher_launch_test.py)
+  install(DIRECTORY test
+          DESTINATION share/${PROJECT_NAME})
 endif()

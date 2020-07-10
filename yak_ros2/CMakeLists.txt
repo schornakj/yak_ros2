@@ -93,7 +93,7 @@ endif()
 
 if(BUILD_TESTING)
   find_package(launch_testing_ament_cmake REQUIRED)
-  add_launch_test(test/launch_testing/mutable_transform_publisher_launch_test.py)
+  add_launch_test(test/launch_test/bunny_scan_launch_test.py)
   install(DIRECTORY test
           DESTINATION share/${PROJECT_NAME})
 endif()
